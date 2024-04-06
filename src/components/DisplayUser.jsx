@@ -1,8 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { removeUser } from "../store/slices/UserSlice";
 
 const UserList = styled.ul`
   list-style: none;
@@ -33,11 +34,13 @@ const Line = styled.hr`
 `;
 
 export const DisplayUser = () => {
+  const dispatch = useDispatch();
   const data = useSelector((state) => state.users);
 
   const deleteUser = (id) => {
     // Implement delete user functionality here
     console.log("Delete user with ID:", id);
+    dispatch(removeUser(id));
   };
 
   return (
